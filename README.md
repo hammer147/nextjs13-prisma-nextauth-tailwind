@@ -1,34 +1,58 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Nextjs 13 test
 
-## Getting Started
+## install tailwindcss
 
-First, run the development server:
+## install prisma
 
 ```bash
-npm run dev
-# or
-yarn dev
+npm i prisma -D
+npx prisma init
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+in prisma/schema.prisma change the provider to mongodb and add a model
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```prisma
+generator client {
+  provider = "prisma-client-js"
+}
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+model User {
+  id       String  @id @default(auto()) @map("_id") @db.ObjectId
+  email    String  @unique
+  name     String?
+  imageUrl String?
+}
+```
 
-## Learn More
+in .env change the DATABASE_URL to your mongodb url
 
-To learn more about Next.js, take a look at the following resources:
+```env
+DATABASE_URL="mongodb+srv://<username>:<password>@cluster0.ul1xj.mongodb.net/<dbname>?retryWrites=true&w=majority"
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+install prisma client
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+```bash
+npm i @prisma/client
+```
 
-## Deploy on Vercel
+each time you change the schema.prisma file you need to run
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```bash
+npx prisma db push
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+[video 1](https://www.youtube.com/watch?v=L5JU1oR29TM&t=31s)
+
+todo: tweets (video 2) and auth (video 3)
+
+[video 2](https://www.youtube.com/watch?v=Y2e1m585hCk)
+
+[video 3](https://www.youtube.com/watch?v=wnrGmNDNVvM)
+
+[github](https://github.com/HamedBahram/nextjs-13)
