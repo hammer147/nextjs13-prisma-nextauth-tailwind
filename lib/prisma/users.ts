@@ -4,7 +4,9 @@ import { getErrorMessage } from '@/lib/utils/error-message'
 
 export async function getUsers() {
   try {
-    const users = await prisma.user.findMany()
+    const users = await prisma.user.findMany({
+      include: { tweets: true }
+    })
     return { users }
   } catch (error) {
     return { errorMsg: getErrorMessage(error) }
@@ -24,7 +26,7 @@ export async function getUserById(id: User['id']) {
   try {
     const user = await prisma.user.findUnique({
       where: { id },
-      // include: { tweets: true }
+      include: { tweets: true }
     })
     return { user }
   } catch (error) {

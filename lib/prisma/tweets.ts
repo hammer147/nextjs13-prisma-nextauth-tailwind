@@ -1,5 +1,6 @@
 import type { Tweet } from '@prisma/client'
 import { prisma } from '.'
+import { getErrorMessage } from '@/lib/utils/error-message'
 
 export async function likeTweet({ tweetId }: { tweetId: Tweet['id'] }) {
   try {
@@ -13,7 +14,7 @@ export async function likeTweet({ tweetId }: { tweetId: Tweet['id'] }) {
     })
     return { tweet }
   } catch (error) {
-    return { error }
+    return { errorMsg: getErrorMessage(error) }
   }
 }
 
@@ -29,6 +30,6 @@ export async function unLikeTweet({ tweetId }: { tweetId: Tweet['id'] }) {
     })
     return { tweet }
   } catch (error) {
-    return { error }
+    return { errorMsg: getErrorMessage(error) }
   }
 }
