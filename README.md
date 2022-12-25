@@ -49,9 +49,11 @@ npx prisma db push
 
 [video 1](https://www.youtube.com/watch?v=L5JU1oR29TM&t=31s)
 
-todo: tweets (video 2) and auth (video 3)
-
 [video 2](https://www.youtube.com/watch?v=Y2e1m585hCk)
+
+todos:
+
+- add auth (video 3)
 
 [video 3](https://www.youtube.com/watch?v=wnrGmNDNVvM)
 
