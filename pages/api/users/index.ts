@@ -15,7 +15,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
 
   if (req.method === 'POST') {
     try {
-      const data = req.body
+      const data = JSON.parse(req.body)
       const { user, errorMsg } = await createUser(data)
       if (errorMsg) throw new Error(errorMsg)
       return res.status(200).json({ user })
